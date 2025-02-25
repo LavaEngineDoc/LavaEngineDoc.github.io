@@ -22,6 +22,18 @@ jobs:
       run: |
         choco install doxygen.install
 
+    - name: Add Doxygen to PATH (if necessary)
+      run: |
+        $doxygen_path = "C:\Program Files\doxygen\bin"  # Ruta donde debería estar instalado Doxygen
+        if (-not (Test-Path "$doxygen_path\doxygen.exe")) {
+          Write-Error "Doxygen no se ha instalado correctamente."
+        } else {
+          $env:Path += ";$doxygen_path"
+          Write-Host "Doxygen está en el PATH."
+        }
+
+    - name: Verify Doxygen installation
+      run: doxygen --version 
 
     - name: Configure GitHub token for authentication
       run: git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
