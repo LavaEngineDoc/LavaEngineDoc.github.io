@@ -33,7 +33,7 @@ jobs:
         }
 
     - name: Verify Doxygen installation
-      run: C:\Program Files\doxygen\bin\doxygen --version 
+      run: '"C:\Program Files\doxygen\bin\doxygen.exe" --version'  # Comando con comillas
 
     - name: Configure GitHub token for authentication
       run: git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
