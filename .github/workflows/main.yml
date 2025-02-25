@@ -1,0 +1,28 @@
+name: Build and Deploy Documentation
+
+on:
+  push:
+    branches:
+      - main  # O la rama que prefieras
+
+jobs:
+  build:
+    runs-on: windows-latest  # Usar un runner de Windows
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Git
+      run: |
+        git config --global user.name "cgroig"
+        git config --global user.email "garciaroi@esat-alumni.com"
+
+    - name: Run the .bat script
+      run: .\updatedoc.bat  # Ejecuta tu archivo .bat
+
+    - name: Commit and push changes
+      run: |
+        git add .
+        git commit -m "Update documentation"
+        git push
