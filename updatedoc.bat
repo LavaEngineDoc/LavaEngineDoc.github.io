@@ -7,7 +7,7 @@ set CLONE_DIR=temp_repo
 set DOXYFILE=doc\Doxyfile
 set SOURCE_DIR=%CLONE_DIR%\doc\html  :: Carpeta cuyo contenido quieres mover
 
-set DOXYGEN_PATH="C:\Program Files\doxygen\bin\doxygen.exe"
+set DOXYGEN_PATH=C:\Program Files\doxygen\bin\doxygen.exe
 
 
 echo Clonando el repositorio...
