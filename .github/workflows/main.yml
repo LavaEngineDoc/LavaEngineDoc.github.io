@@ -18,6 +18,11 @@ jobs:
         git config --global user.name "Cgroig"
         git config --global user.email "garciaroi@esat-alumni.com"
 
+    - name: Install Doxygen
+      run: |
+        choco install doxygen --version 1.9.6  # Usa Chocolatey para instalar Doxygen
+
+
     - name: Configure GitHub token for authentication
       run: git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
