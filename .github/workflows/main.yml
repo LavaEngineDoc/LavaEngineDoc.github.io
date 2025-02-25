@@ -18,6 +18,10 @@ jobs:
         git config --global user.name "cgroig"
         git config --global user.email "garciaroi@esat-alumni.com"
 
+    - name: Set up authentication
+      run: git config --global url."https://%GH_TOKEN%@github.com/".insteadOf "https://github.com/"
+
+
     - name: Run the .bat script
       run: .\updatedoc.bat  # Ejecuta tu archivo .bat
 
