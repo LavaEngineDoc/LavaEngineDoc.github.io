@@ -3,11 +3,11 @@ name: Build and Deploy Documentation
 on:
   push:
     branches:
-      - main  # O la rama que prefieras
+      - main
 
 jobs:
   build:
-    runs-on: windows-latest  # Usar un runner de Windows
+    runs-on: windows-latest
 
     steps:
     - name: Checkout repository
@@ -15,18 +15,18 @@ jobs:
 
     - name: Set up Git
       run: |
-        git config --global user.name "cgroig"
+        git config --global user.name "Cgroig"
         git config --global user.email "garciaroi@esat-alumni.com"
 
-    - name: Set up authentication
-      run: git config --global url."https://%GH_TOKEN%@github.com/".insteadOf "https://github.com/"
-
+    - name: Configure GitHub token for authentication
+      run: git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
 
     - name: Run the .bat script
-      run: .\updatedoc.bat  # Ejecuta tu archivo .bat
+      run: .\updatedoc.bat
 
     - name: Commit and push changes
       run: |
         git add .
         git commit -m "Update documentation"
         git push
+
