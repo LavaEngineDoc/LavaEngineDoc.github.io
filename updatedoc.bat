@@ -2,7 +2,7 @@
 setlocal
 
 :: Configuración
-set REPO_URL=https://%GH_TOKEN%@github.com/LeRayRC/3PVG_PMG_garciaroi_riverodi.git
+set REPO_URL=https://github.com/LeRayRC/3PVG_PMG_garciaroi_riverodi.git
 set CLONE_DIR=temp_repo
 set DOXYFILE=doc\Doxyfile
 set SOURCE_DIR=%CLONE_DIR%\doc\html  :: Carpeta cuyo contenido quieres mover
@@ -22,14 +22,14 @@ doxygen %DOXYFILE% HTML_OUTPUT=.. OUTPUT_DIRECTORY=..\
 
 if errorlevel 1 (
     echo Error al generar la documentación.
-    cd ..
+    cd .. 
     rmdir /s /q %CLONE_DIR%
     exit /b 1
 )
 
 cd ..
 
- xcopy /E /I /Y .\temp_repo\doc\html\ .
+xcopy /E /I /Y .\temp_repo\doc\html\ .
 
 echo Eliminando el repositorio clonado...
 rmdir /s /q %CLONE_DIR%
