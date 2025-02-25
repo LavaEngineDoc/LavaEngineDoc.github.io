@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['hello_20world_0',['Hello World',['../how_to_hello_world.html',1,'how_to']]],
-  ['how_20to_1',['How To',['../how_to.html',1,'']]]
+  ['getting_20started_20with_20mylibrary_0',['Getting Started with MyLibrary',['../getting_started.html',1,'']]]
 ];

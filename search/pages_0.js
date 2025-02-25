@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['camera_20setup_0',['Camera setup',['../how_to_camera.html',1,'how_to']]]
+  ['a_20triangle_0',['Draw a triangle',['../how_to_triangle.html',1,'how_to']]]
 ];
