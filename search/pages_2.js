@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getting_20started_20with_20mylibrary_0',['Getting Started with MyLibrary',['../getting_started.html',1,'']]]
+  ['draw_20a_20triangle_0',['Draw a triangle',['../how_to_triangle.html',1,'how_to']]]
 ];
