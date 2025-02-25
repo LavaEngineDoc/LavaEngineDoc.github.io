@@ -18,7 +18,7 @@ if errorlevel 1 (
 cd %CLONE_DIR%
 
 echo Generando documentación con Doxygen...
-doxygen %DOXYFILE% HTML_OUTPUT=.. OUTPUT_DIRECTORY=..\
+C:\Program Files\doxygen\bin\doxygen %DOXYFILE% HTML_OUTPUT=.. OUTPUT_DIRECTORY=..\
 
 if errorlevel 1 (
     echo Error al generar la documentación.
