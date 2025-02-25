@@ -20,7 +20,7 @@ jobs:
 
     - name: Install Doxygen
       run: |
-        choco install doxygen --version 1.9.6  # Usa Chocolatey para instalar Doxygen
+        choco install doxygen # Usa Chocolatey para instalar Doxygen
 
 
     - name: Configure GitHub token for authentication
