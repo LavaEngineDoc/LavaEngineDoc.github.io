@@ -105,6 +105,12 @@ $(function(){initNavTree('getting_started.html',''); initResizable(true); });
 <div class="textblock"><p>Welcome to Lava Engine! This guide will help you set up and run your first example.</p>
 <h1><a class="anchor" id="installation"></a>
 Installation</h1>
+<p>Unzip the LavaEngine.zip file provided</p>
+<p>1 - Generate dependencies </p><div class="fragment"><div class="line">cd tools</div>
+<div class="line">gendeps.bat</div>
+</div><!-- fragment --><p>2 - Generate solution from the root of project</p>
+<div class="fragment"><div class="line">.\tools\premake5.exe vs2022</div>
+</div><!-- fragment --><p>3 - Open solution from .\build\Lava.sln </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
