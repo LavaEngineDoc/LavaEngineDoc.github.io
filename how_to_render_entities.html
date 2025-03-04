@@ -106,7 +106,13 @@ $(function(){initNavTree('how_to_render_entities.html',''); initResizable(true);
 Add Render and Transform Component</h1>
 <p>To render an entity, it is necessary to add a <a class="el" href="struct_transform_component.html">TransformComponent</a> and <a class="el" href="struct_render_component.html">RenderComponent</a></p>
 <p>First of all <a class="el" href="how_to_load_mesh.html">load a mesh </a> following its corresponding tutorial</p>
-<div class="fragment"><div class="line"><a class="code hl_class" href="class_lava_e_c_s_manager.html">LavaECSManager</a> ecs_manager;</div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;lava/engine/lava_engine.hpp&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="lava__mesh_8hpp.html">lava/engine/lava_mesh.hpp</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;lava/ecs/lava_ecs.hpp&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;lava/engine/lava_pbr_material.hpp&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;lava/ecs/lava_normal_render_system.hpp&quot;</span></div>
+<div class="ttc" id="alava__mesh_8hpp_html"><div class="ttname"><a href="lava__mesh_8hpp.html">lava_mesh.hpp</a></div><div class="ttdoc">Lava Mesh header file.</div></div>
+</div><!-- fragment --><div class="fragment"><div class="line"><a class="code hl_class" href="class_lava_e_c_s_manager.html">LavaECSManager</a> ecs_manager;</div>
 <div class="line"> </div>
 <div class="line"><a class="code hl_class" href="class_lava_p_b_r_material.html">LavaPBRMaterial</a> basic_material(engine, <a class="code hl_struct" href="struct_material_p_b_r_properties.html">MaterialPBRProperties</a>());</div>
 <div class="line"> </div>
