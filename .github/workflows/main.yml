@@ -44,5 +44,5 @@ jobs:
         git config --global url."https://${{ secrets.DOC_REPO_TOKEN }}@github.com/".insteadOf "https://github.com/"
         git add .
         git commit -m "Update documentation"
-        git push
+        git push --force
 
