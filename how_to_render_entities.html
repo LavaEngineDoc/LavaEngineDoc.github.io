@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Lava Engine: MainLoop</title>
+<title>Lava Engine: Render Entities</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -73,7 +73,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('how_to_main_loop.html',''); initResizable(true); });
+$(function(){initNavTree('how_to_render_entities.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -99,46 +99,63 @@ $(function(){initNavTree('how_to_main_loop.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">MainLoop</div></div>
+  <div class="headertitle"><div class="title">Render Entities</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="section_main_loop_engine"></a>
-Engine Main Render Loop</h1>
-<p>Inside the while loop, it is necessary to begin a new frame at the start of each iteration then place all the render operations between begin and end frame.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;lava/engine/lava_engine.hpp&quot;</span></div>
-</div><!-- fragment --><div class="fragment"><div class="line"><span class="keywordflow">while</span> (!engine.shouldClose()) {</div>
+<div class="textblock"><h1><a class="anchor" id="section_render_entities_add_components"></a>
+Add Render and Transform Component</h1>
+<p>To render an entity, it is necessary to add a <a class="el" href="struct_transform_component.html">TransformComponent</a> and <a class="el" href="struct_render_component.html">RenderComponent</a></p>
+<p>First of all <a class="el" href="how_to_load_mesh.html">load a mesh </a> following its corresponding tutorial</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="class_lava_e_c_s_manager.html">LavaECSManager</a> ecs_manager;</div>
 <div class="line"> </div>
-<div class="line">    engine.beginFrame();</div>
-<div class="line">    engine.clearWindow();</div>
+<div class="line"><a class="code hl_class" href="class_lava_p_b_r_material.html">LavaPBRMaterial</a> basic_material(engine, <a class="code hl_struct" href="struct_material_p_b_r_properties.html">MaterialPBRProperties</a>());</div>
 <div class="line"> </div>
-<div class="line"> <span class="comment">//Call render operations, systems, etc..</span></div>
+<div class="line"><a class="code hl_struct" href="struct_mesh_properties.html">MeshProperties</a> mesh_properties = {};</div>
+<div class="line">mesh_properties.mesh_path = <span class="stringliteral">&quot;../examples/assets/Avocado.glb&quot;</span>;</div>
+<div class="line">mesh_properties.material = &amp;basic_material;</div>
 <div class="line"> </div>
-<div class="line">    engine.endFrame();</div>
+<div class="line">std::shared_ptr&lt;LavaMesh&gt; mesh_ = std::make_shared&lt;LavaMesh&gt;(engine, mesh_properties);</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">size_t</span> entity = ecs_manager.createEntity();</div>
+<div class="line">ecs_manager.addComponent&lt;<a class="code hl_struct" href="struct_transform_component.html">TransformComponent</a>&gt;(entity);</div>
+<div class="line">ecs_manager.addComponent&lt;<a class="code hl_struct" href="struct_render_component.html">RenderComponent</a>&gt;(entity);</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">auto</span> transform_component = ecs_manager.getComponent&lt;<a class="code hl_struct" href="struct_transform_component.html">TransformComponent</a>&gt;(entity);</div>
+<div class="line"><span class="keywordflow">if</span> (transform_component) {</div>
+<div class="line">    <span class="keyword">auto</span>&amp; transform = transform_component-&gt;value();</div>
+<div class="line">    transform.pos_ = glm::vec3(0.0f, 0.0f, -15.0f);</div>
+<div class="line">    transform.scale_ = glm::vec3(1.0f, 1.0f, 1.0f);</div>
+<div class="line"> </div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="section_main_loop_render_system"></a>
-Render System</h1>
-<p>The engine provides multiple render systems to perform draw operations over the ecs manager. One of the is them <a class="el" href="class_lava_normal_render_system.html">LavaNormalRenderSystem</a> that renders the normals of every entity with a <a class="el" href="struct_transform_component.html">TransformComponent</a> and <a class="el" href="struct_render_component.html">RenderComponent</a>.</p>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;lava/ecs/lava_normal_render_system.hpp&quot;</span></div>
-</div><!-- fragment --><div class="fragment"><div class="line"><a class="code hl_class" href="class_lava_engine.html">LavaEngine</a> engine;</div>
-<div class="line"><a class="code hl_class" href="class_lava_e_c_s_manager.html">LavaECSManager</a> ecs_manager;</div>
-<div class="line"><a class="code hl_class" href="class_lava_normal_render_system.html">LavaNormalRenderSystem</a> normal_render_system{engine};</div>
-<div class="line"> </div>
-<div class="line"> </div>
-<div class="line"><span class="keywordflow">while</span> (!engine.shouldClose()) {</div>
-<div class="line"> </div>
-<div class="line">    engine.beginFrame();</div>
-<div class="line">    engine.clearWindow();</div>
-<div class="line"> </div>
-<div class="line">    normal_render_system.render(ecs_manager.getComponentList&lt;<a class="code hl_struct" href="struct_transform_component.html">TransformComponent</a>&gt;(),</div>
-<div class="line">        ecs_manager.getComponentList&lt;<a class="code hl_struct" href="struct_render_component.html">RenderComponent</a>&gt;());</div>
-<div class="line"> </div>
-<div class="line">    engine.endFrame();</div>
+<div class="line"><span class="keyword">auto</span> render_component = ecs_manager.getComponent&lt;<a class="code hl_struct" href="struct_render_component.html">RenderComponent</a>&gt;(entity);</div>
+<div class="line"><span class="keywordflow">if</span> (render_component) {</div>
+<div class="line">    <span class="keyword">auto</span>&amp; render = render_component-&gt;value();</div>
+<div class="line">    render.mesh_ = mesh_;</div>
 <div class="line">}</div>
 <div class="ttc" id="aclass_lava_e_c_s_manager_html"><div class="ttname"><a href="class_lava_e_c_s_manager.html">LavaECSManager</a></div><div class="ttdef"><b>Definition</b> lava_ecs.hpp:42</div></div>
-<div class="ttc" id="aclass_lava_engine_html"><div class="ttname"><a href="class_lava_engine.html">LavaEngine</a></div><div class="ttdef"><b>Definition</b> lava_engine.hpp:36</div></div>
-<div class="ttc" id="aclass_lava_normal_render_system_html"><div class="ttname"><a href="class_lava_normal_render_system.html">LavaNormalRenderSystem</a></div><div class="ttdef"><b>Definition</b> lava_normal_render_system.hpp:8</div></div>
+<div class="ttc" id="aclass_lava_p_b_r_material_html"><div class="ttname"><a href="class_lava_p_b_r_material.html">LavaPBRMaterial</a></div><div class="ttdef"><b>Definition</b> lava_pbr_material.hpp:23</div></div>
+<div class="ttc" id="astruct_material_p_b_r_properties_html"><div class="ttname"><a href="struct_material_p_b_r_properties.html">MaterialPBRProperties</a></div><div class="ttdef"><b>Definition</b> lava_pbr_material.hpp:8</div></div>
+<div class="ttc" id="astruct_mesh_properties_html"><div class="ttname"><a href="struct_mesh_properties.html">MeshProperties</a></div><div class="ttdef"><b>Definition</b> lava_mesh.hpp:47</div></div>
 <div class="ttc" id="astruct_render_component_html"><div class="ttname"><a href="struct_render_component.html">RenderComponent</a></div><div class="ttdef"><b>Definition</b> lava_ecs_components.hpp:12</div></div>
 <div class="ttc" id="astruct_transform_component_html"><div class="ttname"><a href="struct_transform_component.html">TransformComponent</a></div><div class="ttdef"><b>Definition</b> lava_ecs_components.hpp:17</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="section_render_entities_call_system"></a>
+Render System</h1>
+<p>Just call the render system that you want</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="class_lava_engine.html">LavaEngine</a> engine;</div>
+<div class="line"><a class="code hl_class" href="class_lava_normal_render_system.html">LavaNormalRenderSystem</a> normal_render_system{engine};</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">while</span> (!engine.shouldClose()) {</div>
+<div class="line">    engine.beginFrame();</div>
+<div class="line">    engine.clearWindow();</div>
+<div class="line"> </div>
+<div class="line">    engine.renderImgui();</div>
+<div class="line">    normal_render_system.render(ecs_manager.getComponentList&lt;<a class="code hl_struct" href="struct_transform_component.html">TransformComponent</a>&gt;(),</div>
+<div class="line">       ecs_manager.getComponentList&lt;<a class="code hl_struct" href="struct_render_component.html">RenderComponent</a>&gt;());</div>
+<div class="line"> </div>
+<div class="line">    engine.endFrame();</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_lava_engine_html"><div class="ttname"><a href="class_lava_engine.html">LavaEngine</a></div><div class="ttdef"><b>Definition</b> lava_engine.hpp:36</div></div>
+<div class="ttc" id="aclass_lava_normal_render_system_html"><div class="ttname"><a href="class_lava_normal_render_system.html">LavaNormalRenderSystem</a></div><div class="ttdef"><b>Definition</b> lava_normal_render_system.hpp:8</div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

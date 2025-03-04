@@ -1,6 +1,6 @@
 var searchData=
 [
   ['to_0',['How To',['../how_to.html',1,'']]],
-  ['transformcomponent_1',['TransformComponent',['../struct_transform_component.html',1,'']]],
-  ['triangle_2',['Draw a triangle',['../how_to_triangle.html',1,'how_to']]]
+  ['transform_20component_1',['Add Render and Transform Component',['../how_to_render_entities.html#section_render_entities_add_components',1,'']]],
+  ['transformcomponent_2',['TransformComponent',['../struct_transform_component.html',1,'']]]
 ];

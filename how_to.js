@@ -11,5 +11,12 @@ var how_to =
       [ "Create Camera Entity", "how_to_camera.html#section_create_camera_entity", null ],
       [ "FlyCam", "how_to_camera.html#section_cupdate_camera_entity", null ]
     ] ],
-    [ "Draw a triangle", "how_to_triangle.html", null ]
+    [ "Load a Mesh", "how_to_load_mesh.html", [
+      [ "Supported file extensions", "how_to_load_mesh.html#section_load_mesh_file_extensions", null ],
+      [ "Showcase", "how_to_load_mesh.html#section_load_mesh_code", null ]
+    ] ],
+    [ "Render Entities", "how_to_render_entities.html", [
+      [ "Add Render and Transform Component", "how_to_render_entities.html#section_render_entities_add_components", null ],
+      [ "Render System", "how_to_render_entities.html#section_render_entities_call_system", null ]
+    ] ]
 ];

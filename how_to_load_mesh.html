@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Lava Engine: Member List</title>
+<title>Lava Engine: Load a Mesh</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -73,7 +73,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('struct_camera_component.html',''); initResizable(true); });
+$(function(){initNavTree('how_to_load_mesh.html',''); initResizable(true); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -98,24 +98,43 @@ $(function(){initNavTree('struct_camera_component.html',''); initResizable(true)
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">CameraComponent Member List</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Load a Mesh</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="struct_camera_component.html">CameraComponent</a>, including all inherited members.</p>
-<table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>far_</b> (defined in <a class="el" href="struct_camera_component.html">CameraComponent</a>)</td><td class="entry"><a class="el" href="struct_camera_component.html">CameraComponent</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>fov_</b> (defined in <a class="el" href="struct_camera_component.html">CameraComponent</a>)</td><td class="entry"><a class="el" href="struct_camera_component.html">CameraComponent</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>near_</b> (defined in <a class="el" href="struct_camera_component.html">CameraComponent</a>)</td><td class="entry"><a class="el" href="struct_camera_component.html">CameraComponent</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>size_</b> (defined in <a class="el" href="struct_camera_component.html">CameraComponent</a>)</td><td class="entry"><a class="el" href="struct_camera_component.html">CameraComponent</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>type_</b> (defined in <a class="el" href="struct_camera_component.html">CameraComponent</a>)</td><td class="entry"><a class="el" href="struct_camera_component.html">CameraComponent</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>view_</b> (defined in <a class="el" href="struct_camera_component.html">CameraComponent</a>)</td><td class="entry"><a class="el" href="struct_camera_component.html">CameraComponent</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<div class="textblock"><h1><a class="anchor" id="section_load_mesh_file_extensions"></a>
+Supported file extensions</h1>
+<p>The engine supports to load meshes with the format gltf-binary (.glb files).</p>
+<p>It is possible to find multiple samples files from the official kronos <a class="el" href="">repository </a>.</p>
+<h1><a class="anchor" id="section_load_mesh_code"></a>
+Showcase</h1>
+<p>Include the necessary headers</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;lava/engine/lava_engine.hpp&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;lava/engine/lava_pbr_material.hpp&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;<a class="code" href="lava__mesh_8hpp.html">lava/engine/lava_mesh.hpp</a>&quot;</span></div>
+<div class="ttc" id="alava__mesh_8hpp_html"><div class="ttname"><a href="lava__mesh_8hpp.html">lava_mesh.hpp</a></div><div class="ttdoc">Lava Mesh header file.</div></div>
+</div><!-- fragment --><p>1 - Create a material with its corresponding properties, you can leave the properties by default.</p>
+<p>2 - Fill the <a class="el" href="struct_mesh_properties.html">MeshProperties</a> struct with the path to the glb file and the material that will be modified during the load process</p>
+<p>3 - Create the mesh itself, in this case it is created using a smart_pointer shared_ptr. <br  />
+</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="class_lava_engine.html">LavaEngine</a> engine;</div>
+<div class="line"><a class="code hl_class" href="class_lava_p_b_r_material.html">LavaPBRMaterial</a> basic_material(engine, <a class="code hl_struct" href="struct_material_p_b_r_properties.html">MaterialPBRProperties</a>());</div>
+<div class="line"><a class="code hl_struct" href="struct_mesh_properties.html">MeshProperties</a> mesh_properties = {};</div>
+<div class="line">mesh_properties.mesh_path = <span class="stringliteral">&quot;../examples/assets/Avocado.glb&quot;</span>;</div>
+<div class="line">mesh_properties.material = &amp;basic_material;</div>
+<div class="line"> </div>
+<div class="line">std::shared_ptr&lt;LavaMesh&gt; mesh_ = std::make_shared&lt;LavaMesh&gt;(engine, mesh_properties);</div>
+<div class="ttc" id="aclass_lava_engine_html"><div class="ttname"><a href="class_lava_engine.html">LavaEngine</a></div><div class="ttdef"><b>Definition</b> lava_engine.hpp:36</div></div>
+<div class="ttc" id="aclass_lava_p_b_r_material_html"><div class="ttname"><a href="class_lava_p_b_r_material.html">LavaPBRMaterial</a></div><div class="ttdef"><b>Definition</b> lava_pbr_material.hpp:23</div></div>
+<div class="ttc" id="astruct_material_p_b_r_properties_html"><div class="ttname"><a href="struct_material_p_b_r_properties.html">MaterialPBRProperties</a></div><div class="ttdef"><b>Definition</b> lava_pbr_material.hpp:8</div></div>
+<div class="ttc" id="astruct_mesh_properties_html"><div class="ttname"><a href="struct_mesh_properties.html">MeshProperties</a></div><div class="ttdef"><b>Definition</b> lava_mesh.hpp:47</div></div>
+</div><!-- fragment --> </div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="how_to.html">How To</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
