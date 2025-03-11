@@ -20,6 +20,7 @@ var hierarchy =
     [ "LavaBuffer", "class_lava_buffer.html", null ],
     [ "LavaDescriptorManager", "class_lava_descriptor_manager.html", null ],
     [ "LavaDevice", "class_lava_device.html", null ],
+    [ "LavaDiffuseRenderSystem", "class_lava_diffuse_render_system.html", null ],
     [ "LavaECSManager", "class_lava_e_c_s_manager.html", null ],
     [ "LavaEngine", "class_lava_engine.html", null ],
     [ "LavaFrameData", "class_lava_frame_data.html", null ],

@@ -142,8 +142,8 @@ Add Render and Transform Component</h1>
 <div class="ttc" id="aclass_lava_p_b_r_material_html"><div class="ttname"><a href="class_lava_p_b_r_material.html">LavaPBRMaterial</a></div><div class="ttdef"><b>Definition</b> lava_pbr_material.hpp:23</div></div>
 <div class="ttc" id="astruct_material_p_b_r_properties_html"><div class="ttname"><a href="struct_material_p_b_r_properties.html">MaterialPBRProperties</a></div><div class="ttdef"><b>Definition</b> lava_pbr_material.hpp:8</div></div>
 <div class="ttc" id="astruct_mesh_properties_html"><div class="ttname"><a href="struct_mesh_properties.html">MeshProperties</a></div><div class="ttdef"><b>Definition</b> lava_mesh.hpp:47</div></div>
-<div class="ttc" id="astruct_render_component_html"><div class="ttname"><a href="struct_render_component.html">RenderComponent</a></div><div class="ttdef"><b>Definition</b> lava_ecs_components.hpp:12</div></div>
-<div class="ttc" id="astruct_transform_component_html"><div class="ttname"><a href="struct_transform_component.html">TransformComponent</a></div><div class="ttdef"><b>Definition</b> lava_ecs_components.hpp:17</div></div>
+<div class="ttc" id="astruct_render_component_html"><div class="ttname"><a href="struct_render_component.html">RenderComponent</a></div><div class="ttdef"><b>Definition</b> lava_ecs_components.hpp:17</div></div>
+<div class="ttc" id="astruct_transform_component_html"><div class="ttname"><a href="struct_transform_component.html">TransformComponent</a></div><div class="ttdef"><b>Definition</b> lava_ecs_components.hpp:23</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="section_render_entities_call_system"></a>
 Render System</h1>
 <p>Just call the render system that you want</p>
@@ -162,6 +162,24 @@ Render System</h1>
 <div class="line">}</div>
 <div class="ttc" id="aclass_lava_engine_html"><div class="ttname"><a href="class_lava_engine.html">LavaEngine</a></div><div class="ttdef"><b>Definition</b> lava_engine.hpp:36</div></div>
 <div class="ttc" id="aclass_lava_normal_render_system_html"><div class="ttname"><a href="class_lava_normal_render_system.html">LavaNormalRenderSystem</a></div><div class="ttdef"><b>Definition</b> lava_normal_render_system.hpp:8</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="section_render_entities_call_diffuse_system"></a>
+Diffuse Render System</h1>
+<p>There is also a render system that only renders the diffuse texture of every entity with transform and render components</p>
+<div class="fragment"><div class="line"><a class="code hl_class" href="class_lava_engine.html">LavaEngine</a> engine;</div>
+<div class="line"><a class="code hl_class" href="class_lava_diffuse_render_system.html">LavaDiffuseRenderSystem</a> diffuse_render_system{engine};</div>
+<div class="line"><span class="keywordflow">while</span> (!engine.shouldClose()) {</div>
+<div class="line"> </div>
+<div class="line"> engine.beginFrame();</div>
+<div class="line"> engine.clearWindow();</div>
+<div class="line"> </div>
+<div class="line"> diffuse_render_system.render(ecs_manager.getComponentList&lt;<a class="code hl_struct" href="struct_transform_component.html">TransformComponent</a>&gt;(),</div>
+<div class="line">    ecs_manager.getComponentList&lt;<a class="code hl_struct" href="struct_render_component.html">RenderComponent</a>&gt;());</div>
+<div class="line"> </div>
+<div class="line"> ecs_render_imgui(ecs_manager, camera_entity);</div>
+<div class="line"> </div>
+<div class="line"> engine.endFrame();</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_lava_diffuse_render_system_html"><div class="ttname"><a href="class_lava_diffuse_render_system.html">LavaDiffuseRenderSystem</a></div><div class="ttdef"><b>Definition</b> lava_diffuse_render_system.hpp:8</div></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

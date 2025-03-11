@@ -19,6 +19,7 @@ var annotated_dup =
     [ "LavaBuffer", "class_lava_buffer.html", null ],
     [ "LavaDescriptorManager", "class_lava_descriptor_manager.html", "class_lava_descriptor_manager" ],
     [ "LavaDevice", "class_lava_device.html", null ],
+    [ "LavaDiffuseRenderSystem", "class_lava_diffuse_render_system.html", null ],
     [ "LavaECSManager", "class_lava_e_c_s_manager.html", null ],
     [ "LavaEngine", "class_lava_engine.html", "class_lava_engine" ],
     [ "LavaFrameData", "class_lava_frame_data.html", null ],

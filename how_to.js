@@ -17,6 +17,12 @@ var how_to =
     ] ],
     [ "Render Entities", "how_to_render_entities.html", [
       [ "Add Render and Transform Component", "how_to_render_entities.html#section_render_entities_add_components", null ],
-      [ "Render System", "how_to_render_entities.html#section_render_entities_call_system", null ]
+      [ "Render System", "how_to_render_entities.html#section_render_entities_call_system", null ],
+      [ "Diffuse Render System", "how_to_render_entities.html#section_render_entities_call_diffuse_system", null ]
+    ] ],
+    [ "Input", "how_to_input.html", [
+      [ "Input Window", "how_to_input.html#section_render_input_window", null ],
+      [ "Input Bindings", "how_to_input.html#section_input_mapping", null ],
+      [ "Input Detection", "how_to_input.html#section_input_detection", null ]
     ] ]
 ];
